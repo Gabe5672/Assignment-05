@@ -1,6 +1,6 @@
 ---
 title: "Assignment 5"
-author: "YOUR NAME"
+author: "Vanessa Galici"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: html_document
 ---
@@ -8,10 +8,22 @@ output: html_document
 <!-- (1) Create folders for raw_data and output --> 
 
 
-<!-- (2) Write a chunk that loads the needed tidyverse libraries but does not show up in any way in the final html document. --> 
 
+
+<!-- (2) Write a chunk that loads the needed tidyverse libraries but does not show up in any way in the final html document. --> 
+```{r,echo=FALSE,message=FALSE}
+knitr::opts_chunk$set(echo = F,message = F)
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(HelpersMG)
+```
 
 <!-- (3) Write a chunk that uses wget to download the data file from the Harvard Dataverse and save is as raw_data/Countries-Deaths.tsv. This chunk should also not show up in any way in the final html and should be cached so that you do not repeatedly download the file as you reexecute your code. --> 
+
+```{r}
+wget("https://dataverse.harvard.edu/api/access/datafile/:persistentId?persistentId=doi:10.7910/DVN/L20LOT/FZLQRQ","raw_data/Countries-Deaths.tsv")
+```
 
 
 <!-- (4) Write a chunk that creates a tidy dataset called output/GFI_total_deaths_by_date.csv. This file should have variables named Country, Date, and Total_Deaths. You will need to use several tidy tools to restructure the data with pivot_long() and convert the four-digit codes to dates using lubridate. Filter the data so that only information from Germany, France, and Italy are present. This chuck should not display anything in the final html document. --> 
